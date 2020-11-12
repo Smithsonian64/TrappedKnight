@@ -18,15 +18,15 @@ public class Board {
         if(size % 2 != 0) {
             for (int i = 0; i < size / 2; i++) {
                 for(int j = size - shrink - 1; j > shrink; j--) {
-                    square[j][size - shrink - 1] = counter--;
+                    square[j][shrink] = counter--;
                 }
-                for(int j = size - shrink - 1; j > shrink; j--) {
+                for(int j = shrink; j < size - shrink - 1; j++) {
                     square[shrink][j] = counter--;
                 }
                 for(int j = shrink; j < size - shrink - 1; j++) {
-                    square[j][shrink] = counter--;
+                    square[j][size - shrink - 1] = counter--;
                 }
-                for(int j = shrink; j < size - shrink - 1; j ++) {
+                for(int j = size - shrink - 1; j > shrink; j--) {
                     square[size - shrink - 1][j] = counter--;
                 }
                 shrink++;
@@ -37,15 +37,15 @@ public class Board {
         } else if(size % 2 == 0 ) {
             for(int i = 0; i < size / 2; i++) {
                 for(int j = shrink; j < size - shrink - 1; j++) {
-                    square[j][shrink] = counter--;
+                    square[j][size - shrink - 1] = counter--;
                 }
-                for(int j = shrink; j < size - shrink - 1; j++) {
+                for(int j = size - shrink - 1; j > shrink; j--) {
                     square[size - shrink - 1][j] = counter--;
                 }
                 for(int j = size - shrink - 1; j > shrink; j--) {
-                    square[j][size - shrink - 1] = counter--;
+                    square[j][shrink] = counter--;
                 }
-                for(int j = size - shrink - 1; j > shrink; j--){
+                for(int j = shrink; j < size - shrink - 1; j++){
                     square[shrink][j] = counter--;
                     if(counter == 0) {
                         startX = shrink;
@@ -57,18 +57,18 @@ public class Board {
 
         }
 
-        printBoard();
+        //printBoard();
 
     }
 
     public void printBoard() {
         int n = 0;
         for(int i = square[0].length - 1; i >= 0; i--) {
-            for (int j = 0; j < square.length; j++) {
+            for (int[] j : square) {
 
-                System.out.print(square[j][i] + "\t");
+                System.out.print(j[i] + "\t");
 
-                if(++n % square.length == 0) System.out.println();
+                if (++n % square.length == 0) System.out.println();
 
             }
         }

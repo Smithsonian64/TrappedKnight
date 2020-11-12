@@ -5,22 +5,24 @@ import java.awt.event.KeyListener;
 
 public class Window extends JFrame {
 
-    JPanel drawPanel;
 
-    int width;
-    int height;
+    static DrawPanel drawPanel;
+
+    static int width;
+    static int height;
 
     public Window(int width, int height, Board board, Piece piece) {
 
-        this.width = width;
-        this.height = height;
+        Window.width = width;
+        Window.height = height;
 
-        DrawPanel drawPanel = new DrawPanel(width, height, this, board, piece);
+        drawPanel = new DrawPanel(width, height, this, board, piece);
 
         this.add(drawPanel);
 
         this.setTitle("Trapped Knight");
         this.setUndecorated(true);
+        //this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.setSize(width, height);
         this.setLocation(   (int) Toolkit.getDefaultToolkit().getScreenSize().getWidth()/2 - width/2,
                 (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight()/2 - height/2);
